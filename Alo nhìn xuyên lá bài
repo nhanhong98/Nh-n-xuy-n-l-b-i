@@ -1,0 +1,15 @@
+import streamlit as st
+from PIL import Image
+
+st.set_page_config(page_title="AI nhìn xuyên lá bài", layout="centered")
+st.title("AI nhìn xuyên lá bài")
+
+real_card = st.text_input("Nhập tên lá bài thật (ví dụ: Q♠, 10♥,...):")
+
+uploaded_image = st.file_uploader("Chụp hoặc tải ảnh lá bài úp", type=["jpg", "png"])
+
+if uploaded_image and real_card:
+    img = Image.open(uploaded_image)
+    st.image(img, caption="Lá bài cần đoán", use_column_width=True)
+    st.markdown("**Đang phân tích bằng AI...**")
+    st.success(f"AI đoán đây là: **{real_card}**")
